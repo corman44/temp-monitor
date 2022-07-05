@@ -36,4 +36,11 @@
 #### - Write Scratchpad [0x4E]: this command allows the master to write 3 bytes of data to the scratchpad. T_H, T_L, Config reg is the order (Byte2, Byte3, Byte4). Data transmitted LSB first before Master issues a reset.
 #### - Read Scratchpad [0xBE]: allows the master to read the contents of the scratchpad. Transfer starts with LSB of Byte0 and continues through Byte8's MSB. Master may terminate the transmission part way through if not all Bytes are necessary.
 #### - Copy Scratchpad [0x48]: commands the device to copy the data Bytes 2,3,4 to EEPROM for later usage.
-#### - Recall E^2 [0xB8]: 
+#### - Recall E^2 [0xB8]:
+
+#testBIG
+testbig
+##testsmaller
+testsmaller
+###testsmallest
+testsmallest
