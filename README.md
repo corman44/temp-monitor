@@ -38,9 +38,9 @@
 #### - Copy Scratchpad [0x48]: commands the device to copy the data Bytes 2,3,4 to EEPROM for later usage.
 #### - Recall E^2 [0xB8]:
 
-#testBIG
+# testBIG
 testbig
-##testsmaller
+## testsmaller
 testsmaller
-###testsmallest
+### testsmallest
 testsmallest
