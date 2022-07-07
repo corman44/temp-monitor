@@ -1,9 +1,7 @@
 [package]
-name = "temp-monitor"
-version = "0.1.0"
 edition = "2021"
-
-# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+name = "rp2040-project-template"
+version = "0.1.0"
 
 [dependencies]
 cortex-m = "0.7"
@@ -15,30 +13,64 @@ defmt = "0.3"
 defmt-rtt = "0.3"
 panic-probe = { version = "0.3", features = ["print-defmt"] }
 
-[default.flashing]
-enabled = true
+# We're using a Pico by default on this template
+rp-pico = "0.4"
 
-[default.reset]
-enabled = true
-halt_afterwards = false
+# but you can use any BSP. Uncomment this to use the pro_micro_rp2040 BSP instead
+# sparkfun-pro-micro-rp2040 = "0.3"
 
-[default.general]
-chip = "RP2040"
-log_level = "WARN"
-# RP2040 does not support connect_under_reset
-connect_under_reset = false
+# If you're not going to use a Board Support Package you'll need these:
+# rp2040-hal = { version="0.5", features=["rt"] }
+# rp2040-boot2 = "0.2"
 
-[default.rtt]
-enabled = true
-up_mode = "NoBlockSkip"
-channels = [
-    { up = 0, down = 0, name = "name", up_mode = "NoBlockSkip", format = "Defmt" },
-]
-timeout = 3000
-show_timestamps = true
-log_enabled = false
-log_path = "./logs"
+# cargo build/run
+[profile.dev]
+codegen-units = 1
+debug = 2
+debug-assertions = true
+incremental = false
+opt-level = 3
+overflow-checks = true
 
-[default.gdb]
-enabled = false
-gdb_connection_string = "127.0.0.1:2345"
+# cargo build/run --release
+[profile.release]
+codegen-units = 1
+debug = 2
+debug-assertions = false
+incremental = false
+lto = 'fat'
+opt-level = 3
+overflow-checks = false
+
+# do not optimize proc-macro crates = faster builds from scratch
+[profile.dev.build-override]
+codegen-units = 8
+debug = false
+debug-assertions = false
+opt-level = 0
+overflow-checks = false
+
+[profile.release.build-override]
+codegen-units = 8
+debug = false
+debug-assertions = false
+opt-level = 0
+overflow-checks = false
+
+# cargo test
+[profile.test]
+codegen-units = 1
+debug = 2
+debug-assertions = true
+incremental = false
+opt-level = 3
+overflow-checks = true
+
+# cargo test --release
+[profile.bench]
+codegen-units = 1
+debug = 2
+debug-assertions = false
+incremental = false
+lto = 'fat'
+opt-level = 3
