@@ -1,19 +1,14 @@
-[package]
-name = "temp-monitor"
-version = "0.1.0"
-edition = "2021"
+[default.probe]
+protocol = "Swd"
+speed = 20000
+# If you only have one probe cargo embed will pick automatically
+# Otherwise: add your probe's VID/PID/serial to filter
 
-# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+## rust-dap
+# usb_vid = "6666"
+# usb_pid = "4444"
+# serial = "test"
 
-[dependencies]
-cortex-m = "0.7"
-cortex-m-rt = "0.7"
-embedded-hal = { version = "0.2.5", features = ["unproven"] }
-embedded-time = "0.12"
-
-defmt = "0.3"
-defmt-rtt = "0.3"
-panic-probe = { version = "0.3", features = ["print-defmt"] }
 
 [default.flashing]
 enabled = true
